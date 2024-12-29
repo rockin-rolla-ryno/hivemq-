@@ -1,4 +1,32 @@
 # hivemq-
+
+External Mosquitto Broker Connection to HiveMQ - Because Hivemq does not natively have Mosquitto bridge protocol it requires the following 
+# Basic working configuration for Mosquitto bridge (for non-secure connection):
+```
+connection hivemq
+address broker.hivemq.com:1883
+topic # both 0
+bridge_protocol_version mqttv311
+try_private false
+notifications false
+bridge_attempt_unsubscribe false
+```
+
+# For secure connection to HiveMQ Cloud, you'll need this configuration:
+```
+connection cloud-01
+address <cluster>.s2.eu.hivemq.cloud:8883
+bridge_cafile <dir>/isrgrootx1.pem
+topic # out 0
+topic # in 0
+remote_username <username>
+remote_password <password>
+bridge_protocol_version mqttv311
+try_private false
+notifications false
+bridge_attempt_unsubscribe false
+bridge_insecure true
+```
 or an already finished project that provides you with all the code in this guide, clone this example repository. You can also copy the code below into your own project. If you cloned the repository from GitHub, the required dependencies are listed in the pubspec.yaml and you need to run dart pub get to install them. Otherwise, follow these instructions to create your own dependency file.
 
 Create a new project folder mqtt-dart-hivemq-cloud in your preferred IDE. Create a subfolder bin with a main.dart file inside. Add the code shown in the next section to this dart file. To install the required dependencies, you need to create your own pubspec.yaml in the root folder. That mean it should be outside the bin folder. Add the following code to the pubspec.yaml:
@@ -170,3 +198,31 @@ First it sets up the client by setting the host name, client name and port. The 
 
 Next steps
 Get familiar with the MQTT.Dart API and build your first application. Further information on MQTT.Dart can be found in our MQTT Client Library Encyclopedia (```https://www.hivemq.com/blog/mqtt-client-library-mqtt-dart/``` ). Learn more about MQTT by visiting the MQTT Essentials guide ```https://www.hivemq.com/mqtt/``` , that explains the core of MQTT concepts, its features and other essential information.
+
+
+# Basic working configuration for Mosquitto bridge (for non-secure connection):
+```
+connection hivemq
+address broker.hivemq.com:1883
+topic # both 0
+bridge_protocol_version mqttv311
+try_private false
+notifications false
+bridge_attempt_unsubscribe false
+```
+
+# For secure connection to HiveMQ Cloud, you'll need this configuration:
+```
+connection cloud-01
+address <cluster>.s2.eu.hivemq.cloud:8883
+bridge_cafile <dir>/isrgrootx1.pem
+topic # out 0
+topic # in 0
+remote_username <username>
+remote_password <password>
+bridge_protocol_version mqttv311
+try_private false
+notifications false
+bridge_attempt_unsubscribe false
+bridge_insecure true
+```
